@@ -23,7 +23,7 @@ type Document {
 }
 
 type Mutation {
-  saveDocument(document: CreateDocumentDTO!): Document!
+  saveDocument(input: CreateDocumentDTO!): Document!
 }
 
 type Query {

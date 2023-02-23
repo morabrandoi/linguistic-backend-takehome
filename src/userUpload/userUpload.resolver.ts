@@ -48,8 +48,8 @@ export class UserUploadResolver {
 
   @Mutation(() => Document)
   async saveDocument(
-    @Args('document') document: CreateDocumentDTO,
+    @Args('input') input: CreateDocumentDTO,
   ): Promise<Document> {
-    return await this.userUploadService.createDocument(document);
+    return await this.userUploadService.createDocument(input);
   }
 }
