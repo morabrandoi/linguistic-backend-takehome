@@ -28,12 +28,20 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query(() => User)
-  user(@Args('id') id: number) {
+  async user(@Args('id') id: number) {
     return this.userService.findByID(id);
   }
 
-  @Query(() => [Document])
-  documents(@Args('id') id: number) {
+  // // This was for the base points
+  // @Query(() => [Document])
+  // async documents(@Args('id') id: number) {
+  //   return this.userService.findDocsByUserID(id);
+  // }
+
+  // this was for the bonus points
+  @ResolveField()
+  async documents(@Parent() user: User): Promise<Document[]> {
+    const { id } = user;
     return this.userService.findDocsByUserID(id);
   }
 
@@ -42,11 +50,5 @@ export class UserResolver {
     @Args('document') document: CreateDocumentDTO,
   ): Promise<Document> {
     return await this.userService.createDocument(document);
-  }
-
-  @ResolveField()
-  async document(@Parent() user: User): Promise<Document[]> {
-    const { id } = user;
-    return this.userService.findDocsByUserID(id);
   }
 }
