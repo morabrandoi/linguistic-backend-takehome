@@ -9,8 +9,8 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 
-import { Document, User } from './models/user.model';
-import { UserService } from './user.service';
+import { Document, User } from './models/userUpload.model';
+import { UserUploadService } from './userUpload.service';
 
 @InputType()
 class CreateDocumentDTO {
@@ -23,32 +23,33 @@ class CreateDocumentDTO {
   @Field()
   authorId: number;
 }
+
 @Resolver(() => User)
-export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+export class UserUploadResolver {
+  constructor(private readonly userUploadService: UserUploadService) {}
 
   @Query(() => User)
   async user(@Args('id') id: number) {
-    return this.userService.findByID(id);
+    return this.userUploadService.findByID(id);
   }
 
   // // This was for the base points
   // @Query(() => [Document])
   // async documents(@Args('id') id: number) {
-  //   return this.userService.findDocsByUserID(id);
+  //   return this.userUploadService.findDocsByUserID(id);
   // }
 
   // this was for the bonus points
   @ResolveField(() => [Document])
   async documents(@Parent() user: User): Promise<Document[]> {
     const { id } = user;
-    return this.userService.findDocsByUserID(id);
+    return this.userUploadService.findDocsByUserID(id);
   }
 
   @Mutation(() => Document)
   async saveDocument(
     @Args('document') document: CreateDocumentDTO,
   ): Promise<Document> {
-    return await this.userService.createDocument(document);
+    return await this.userUploadService.createDocument(document);
   }
 }
