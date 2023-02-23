@@ -22,7 +22,7 @@ export class UserService {
     });
   }
 
-  createDocument(title: string, textBody: string, authorId: number) {
+  createDocument({ title, textBody, authorId }) {
     return this.prismaService.document.create({
       data: { title, textBody, authorId },
     });

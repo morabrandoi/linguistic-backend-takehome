@@ -1,8 +1,26 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Field,
+  InputType,
+  Mutation,
+  Query,
+  Resolver,
+} from '@nestjs/graphql';
 
 import { Document, User } from './models/user.model';
 import { UserService } from './user.service';
 
+@InputType()
+class CreateDocumentDTO {
+  @Field()
+  title: string;
+
+  @Field()
+  textBody: string;
+
+  @Field()
+  authorId: number;
+}
 @Resolver(() => User)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
@@ -19,10 +37,8 @@ export class UserResolver {
 
   @Mutation(() => Document)
   async saveDocument(
-    @Args('title') title: string,
-    @Args('textBody') textBody: string,
-    @Args('authorId') authorId: number,
+    @Args('document') document: CreateDocumentDTO,
   ): Promise<Document> {
-    return await this.userService.createDocument(title, textBody, authorId);
+    return await this.userService.createDocument(document);
   }
 }
