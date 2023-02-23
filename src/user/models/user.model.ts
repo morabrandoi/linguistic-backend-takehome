@@ -13,6 +13,9 @@ export class User implements UserModel {
 
   @Field()
   email: string;
+
+  @Field(() => [Document], { nullable: 'items' })
+  document: Document[];
 }
 
 @ObjectType()

@@ -3,7 +3,9 @@ import {
   Field,
   InputType,
   Mutation,
+  Parent,
   Query,
+  ResolveField,
   Resolver,
 } from '@nestjs/graphql';
 
@@ -40,5 +42,11 @@ export class UserResolver {
     @Args('document') document: CreateDocumentDTO,
   ): Promise<Document> {
     return await this.userService.createDocument(document);
+  }
+
+  @ResolveField()
+  async document(@Parent() user: User): Promise<Document[]> {
+    const { id } = user;
+    return this.userService.findDocsByUserID(id);
   }
 }

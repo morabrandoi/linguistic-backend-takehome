@@ -32,6 +32,7 @@ type Query {
 }
 
 type User {
+  document: [Document]!
   email: String!
   id: Float!
   name: String!
