@@ -1,11 +1,11 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 import type { User as UserModel } from '@prisma/client';
 import type { Document as DocumentModel } from '@prisma/client';
 
 @ObjectType()
 export class User implements UserModel {
-  @Field()
+  @Field(() => Int)
   id: number;
 
   @Field()
@@ -13,14 +13,11 @@ export class User implements UserModel {
 
   @Field()
   email: string;
-
-  @Field(() => [Document], { nullable: 'items' })
-  document: Document[];
 }
 
 @ObjectType()
 export class Document implements DocumentModel {
-  @Field()
+  @Field(() => Int)
   id: number;
 
   @Field()

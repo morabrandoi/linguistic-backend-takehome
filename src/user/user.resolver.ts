@@ -39,7 +39,7 @@ export class UserResolver {
   // }
 
   // this was for the bonus points
-  @ResolveField()
+  @ResolveField(() => [Document])
   async documents(@Parent() user: User): Promise<Document[]> {
     const { id } = user;
     return this.userService.findDocsByUserID(id);

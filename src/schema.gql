@@ -16,7 +16,7 @@ scalar DateTime
 type Document {
   authorId: Float!
   createdAt: DateTime!
-  id: Float!
+  id: Int!
   textBody: String!
   title: String!
   updatedAt: DateTime!
@@ -27,13 +27,12 @@ type Mutation {
 }
 
 type Query {
-  documents(id: Float!): [Document!]!
   user(id: Float!): User!
 }
 
 type User {
-  document: [Document]!
+  documents: [Document!]!
   email: String!
-  id: Float!
+  id: Int!
   name: String!
 }
