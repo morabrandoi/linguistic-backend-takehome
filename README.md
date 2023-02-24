@@ -31,7 +31,7 @@ Now to run the docker image, in your shell run
 ```
 docker container run -it -p 3000:3000 -p 5555:5555 --rm brand0m0ra/linguistic-exercise
 ```
-This is binds to ports `3000` and `5555` and because of the `-it` flag you can `^C` to stop the container from running. Additionally, because of the `--rm` flag the container will destroy itself when it is stopped.
+This binds to ports `3000` and `5555` and because of the `-it` flag you can `^C` to stop the container from running. Additionally, because of the `--rm` flag the container will destroy itself when it is stopped.
 
 ## Interact with Project
 ### Prisma Studio
