@@ -35,10 +35,10 @@ This is binds to ports `3000` and `5555` and because of the `-it` flag you can `
 
 ## Interact with Project
 ### Prisma Studio
-In your browser go to [localhost:5555](localhost:5555) and you will have access to the database to see how it was populated with seeded data as well as how it will change in the following steps.
+In your browser go to [localhost:5555](http://0.0.0.0:5555/) and you will have access to the database to see how it was populated with seeded data as well as how it will change in the following steps.
 
 ### GraphQL Playground
-In your browser go to [localhost:3000/graphql](localhost:3000/graphql). Here you will see a place to type and run a query. To start, copy and paste the following query and hit run. You should see the desired output.
+In your browser go to [localhost:3000/graphql](http://0.0.0.0:3000/graphql). Here you will see a place to type and run a query. To start, copy and paste the following query and hit run. You should see the desired output.
 ```
 query {
   user(id: 3) {
